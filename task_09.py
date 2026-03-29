@@ -48,3 +48,6 @@ a = Connect_dicts()
 assert (a.connect_dicts({ "a": 2, "b": 12 }, { "c": 11, "e": 5 })) == {'c': 11, 'b': 12}
 assert (a.connect_dicts({ "a": 13, "b": 9, "d": 11 }, { "c": 12, "a": 15 })) == {'d': 11, 'c': 12, 'a': 13}
 assert (a.connect_dicts({ "a": 14, "b": 12 }, { "c": 11, "a": 15 })) == {'c': 11, 'b': 12, 'a': 15}
+
+def connect_dicts(d1, d2):
+    return Connect_dicts().connect_dicts(d1,d2)

@@ -54,3 +54,6 @@ assert (a.sort_list([2, 4, 6, 8])) == [8, 4, 6, 2, 2]
 assert (a.sort_list([1])) == [1, 1]
 assert (a.sort_list([1, 2, 1, 3])) == [3, 2, 3, 1, 1]
 assert (a.sort_list([])) == []
+
+def sort_list(l):
+    return MySort().sort_list(l)

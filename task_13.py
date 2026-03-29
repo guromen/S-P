@@ -58,23 +58,23 @@ def cached( max_size:int=None, seconds:int=None):
                     if max_size==None or len(d)<max_size:
                         d[args[0]] = func(args[0])
                         print(f'1) Ключ не найден. Поэтому записываем {args[0]} в кэш', d)
-                        return f'Ответ: {d[args[0]]}'
+                        return d[args[0]]
                     elif len(d)>=max_size:
                         first_key = next(iter(d))
                         d[args[0]] = func(args[0])
                         d.pop(first_key)
                         print(f'Удален первый элемент в кэше')
                         print(f'2)Записываем {args[0]} в кэш', d)
-                        return f'Ответ: {d[args[0]]}'
+                        return d[args[0]]
                 res = d.get(args[0])
                 print(f'3) Ключ найден, поэтому берем {args[0]} из кэша')
-                return f'Ответ: {res}'
+                return res
             d.clear()
             start = time.time()
             print('Кэш очистили, так как end-start > seconds')
             d[args[0]] = func(args[0])
             print(f'4)Записываем {args[0]} в кэш', d)
-            return f'Ответ: {d[args[0]]}'
+            return {d[args[0]]}
         return inner
     return wrapper
 

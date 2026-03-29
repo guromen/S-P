@@ -37,3 +37,6 @@ assert my_array.max_odd(['ololo', 2, 3, 4, [1, 2], None]) == 3
 assert my_array.max_odd(['ololo', 'fufufu']) == None
 assert my_array.max_odd([2, 2, 4]) == None
 assert my_array.max_odd(['ololo', 2, 3, 4, [1, 2, 39.000], None]) == 39
+
+def max_odd(l):
+    return Check().max_odd(l)

@@ -24,9 +24,9 @@ class Anagramm:
         combine_result = []
         for n in range(len(l) - 1):
             res1 = []
-            res1.append(l[n])
+            res1.append(l[n].lower())
             for k in range(1 + n, len(l)):
-                if sorted(l[n]) == sorted(l[k]):
+                if sorted(l[n]) == sorted(l[k].lower()):
                     res1.append(l[k])
                     l[k] = ''
             combine_result.append(res1)
@@ -41,3 +41,6 @@ assert (anagram.combine_anagrams(["cars", "for", "potatoes", "racs", "four", "sc
 assert (anagram.combine_anagrams(['python', 'lypton', 'caiman', 'recap', 'caper', 'pacer', 'maniac'])) == \
     [['python'], ['lypton'], ['caiman', 'maniac'], ['recap', 'caper', 'pacer']]
 assert (anagram.combine_anagrams(3)) == []
+
+def combine_anagrams(list_ar):
+    return Anagramm().combine_anagrams(list_ar)

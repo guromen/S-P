@@ -85,8 +85,10 @@ class BlockTranspositionCipher:
      """
 
     def __init__(self, text, key, decrypt = False):
-        self.text = text.lower()
+        self.text = text
         self.key = self.validate_key(key)
+        if decrypt:
+            self.key = self.invert_key(self.key)
         self.cript_res = []
 
 
@@ -111,12 +113,13 @@ class BlockTranspositionCipher:
                     block=''
                 if len(block) == len(self.key) and ' ' in block  and decrypt==False:
                     s = block.count(' ')
-                    stprip_block = block.strip() + ' '*s
-                    self.cript_res.append(stprip_block[:len(self.key)]) #Перемещаю пробелы в конец блока
+                    # stprip_block = block.strip() + ' '*s
+                    # self.cript_res.append(stprip_block[:len(self.key)]) #Перемещаю пробелы в конец блока
+                    self.cript_res.append(block)
                 if len(block) == len(self.key) and ' ' in block  and decrypt==True:
-                    # s = block.count(' ')
-                    stprip_block = block.strip()
-                    self.cript_res.append(stprip_block.strip())
+                    # stprip_block = block.strip()
+                    # self.cript_res.append(stprip_block.strip())
+                    self.cript_res.append(block)
 
 
     def __iter__(self):
@@ -145,25 +148,32 @@ class BlockTranspositionCipher:
             list_int_key.append(ord(i) - 97)
         return  list_int_key
 
+    @staticmethod
+    def invert_key(key):
+        """Обратный ключ"""
+        inv = [0] * len(key)
+        for i, j in enumerate(key):
+            inv[j] = i
+        return inv
+
 def test1(key):
     """
     Небольшой тест посмотреть исключения и шифрованный\дешифрованный результат
     """
     text = "HELLOWORLD"
-
     try:
         cipher = BlockTranspositionCipher(text, key)
         encrypted = ''.join(cipher)
         decipher = BlockTranspositionCipher(encrypted, key, decrypt=True)
         decrypted = ''.join(decipher)
-        return (encrypted, decrypted)
+        return ('encrypted: ', encrypted,'decrypted', decrypted)
     except ValueError as e:
         return (str(e))
 
 
 assert test1('abca') == 'Ключ не должен сожержать повторяющиеся буквы'
 assert test1('ac2b') == 'Ключ должен содержать английские буквы a..z'
-assert (test1('acb')) == ('hlelwoolrd  ', 'helloworld')
+assert (test1('acb')) == ('encrypted: ', 'HLELWOOLRD  ', 'decrypted', 'HELLOWORLD  ')
 
 
         #Просто тесты из задания, видны блоки итерации

@@ -51,3 +51,7 @@ assert p1.is_palindrome("Madam, I'm Adam!") == True, 'Добдно быть True
 assert p1.is_palindrome(333) == True, 'Добдно быть True'
 assert p1.is_palindrome(None) == False, 'Добдно быть False'
 assert p1.is_palindrome("Abracadabra") == False, 'Добдно быть False'
+
+def is_palindrome(phrase):
+    return Palindrome().is_palindrome(phrase)
+

@@ -27,11 +27,12 @@ class EvenNumbers:
             self.n = args[0]
 
     def __iter__(self):
-        if not isinstance(self.n, int) or self.n <= 0:
+        if not isinstance(self.n, int):
             raise ValueError('Введите целое число больше 0')
-        else:
-            a = (i for i in range(2*(self.n)) if i%2==0)
-            return  a
+        if  self.n <= 0:
+            raise ValueError('Введите целое число больше 0')
+
+        return (i for i in range(2*(self.n)) if i%2==0)
 
 
 def test_func(*args, **kwargs):
