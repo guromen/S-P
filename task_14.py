@@ -25,6 +25,8 @@ class EvenNumbers:
             print(f'Взят первый аргумент, {args[0]}')
         else:
             self.n = args[0]
+        if self.n is None:
+            raise TypeError('Нет аргументов')
 
     def __iter__(self):
         if not isinstance(self.n, int):

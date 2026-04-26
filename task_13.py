@@ -74,7 +74,7 @@ def cached( max_size:int=None, seconds:int=None):
             print('Кэш очистили, так как end-start > seconds')
             d[args[0]] = func(args[0])
             print(f'4)Записываем {args[0]} в кэш', d)
-            return {d[args[0]]}
+            return d[args[0]]
         return inner
     return wrapper
 
