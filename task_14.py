@@ -31,7 +31,7 @@ class EvenNumbers:
     def __iter__(self):
         if not isinstance(self.n, int):
             raise ValueError('Введите целое число больше 0')
-        if  self.n <= 0:
+        if  self.n < 0:
             raise ValueError('Введите целое число больше 0')
 
         return (i for i in range(2*(self.n)) if i%2==0)
@@ -52,7 +52,7 @@ def test_func(*args, **kwargs):
 
 assert test_func(5) == '0 2 4 6 8 '
 assert test_func(8) == '0 2 4 6 8 10 12 14 '
-assert test_func(0) == 'Введите целое число больше 0'
+assert test_func(0) == ''
 assert test_func('1') == 'Введите целое число больше 0'
 assert test_func(1.5) == 'Введите целое число больше 0'
 assert test_func() == 'Нет аргументов'
